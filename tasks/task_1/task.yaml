@@ -1,5 +1,5 @@
-id: task_1
-name: high_traffic_north
-grader: tasks/task_1/grader.py
-prompt: Choose highest traffic road
-expected_output: 0
+name: "Standard Junction Flow"
+description: "The agent must identify the road with the highest vehicle density in a normal 4-way junction."
+version: "1.0.0"
+grader_path: "grader.py"
+difficulty: "Easy"
