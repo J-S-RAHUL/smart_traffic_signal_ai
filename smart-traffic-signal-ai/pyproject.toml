@@ -1,0 +1,15 @@
+[project]
+name = "smart-traffic-signal-ai"
+version = "1.0.0"
+description = "AI-based smart traffic signal system"
+requires-python = ">=3.10"
+dependencies = [
+    "openai",
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "numpy"
+]
+
+[project.scripts]
+server = "inference:run_task"
