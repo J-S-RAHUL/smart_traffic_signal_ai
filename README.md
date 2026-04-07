@@ -4,7 +4,8 @@
 ## 👥 Team Details
 This project was developed as part of the **Meta PyTorch OpenEnv Hackathon Round 1**.
 
-**Team Name:** AI-MAN**
+**Team Name:** AI-MAN 
+
 **Project Type:** AI / Reinforcement Learning Simulation  
 **Category:** Smart Traffic Optimization  
 
