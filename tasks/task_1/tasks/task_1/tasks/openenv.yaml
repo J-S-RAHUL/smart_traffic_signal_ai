@@ -1,0 +1,8 @@
+name: smart-traffic-signal-ai
+version: 1.0.0
+entrypoint: inference.py
+
+tasks:
+  - tasks/task_1/task.yaml
+  - tasks/task_2/task.yaml
+  - tasks/task_3/task.yaml
