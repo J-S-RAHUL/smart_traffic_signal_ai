@@ -1,5 +1,5 @@
-id: task_3
-name: emergency_vehicle_priority
-grader: tasks/task_3/grader.py
-prompt: Prioritize emergency road
-expected_output: 1
+name: "Emergency Vehicle Priority"
+description: "The agent must prioritize roads with emergency vehicles (Ambulance/Fire) regardless of total traffic volume."
+version: "1.0.0"
+grader_path: "grader.py"
+difficulty: "Hard"
