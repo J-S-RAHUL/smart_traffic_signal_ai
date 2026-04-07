@@ -1,5 +1,0 @@
-id: task_3
-name: emergency_vehicle_priority
-grader: tasks/task_3/grader.py
-prompt: Prioritize emergency road
-expected_output: 1
