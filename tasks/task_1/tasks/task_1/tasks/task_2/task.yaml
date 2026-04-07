@@ -1,5 +1,0 @@
-id: task_2
-name: high_traffic_east
-grader: tasks/task_2/grader.py
-prompt: Choose highest traffic road
-expected_output: 2
