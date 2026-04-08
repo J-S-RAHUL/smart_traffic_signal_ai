@@ -1,5 +1,5 @@
 name: "Emergency Vehicle Priority"
-description: "Prioritize roads with emergency vehicles regardless of traffic density."
+description: "Emergency priority handling"
 version: "1.0.0"
-grader_path: "grader.py"
+grader_path: "grader.grade"
 difficulty: "Hard"
