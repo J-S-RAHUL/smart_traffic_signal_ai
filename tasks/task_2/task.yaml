@@ -1,5 +1,5 @@
 name: "Peak Hour Congestion"
-description: "Handle medium traffic"
+description: "Handle medium traffic scenarios with peak hour weighting"
 version: "1.0.0"
-grader_path: "grader.grade"
+grader_path: "tasks.task_2.grader.grade"
 difficulty: "Medium"
