@@ -1,25 +1,13 @@
-# tasks/task_2/grader.py
+# grader.py for Medium Task
 
-def grade(output=None, expected_output=None, observation=None, **kwargs):
+def grade(raw_scores, consistency_bonus=0.10, explanation_bonus=0.10, catastrophic_penalty=0.5):
     """
-    Task 2: Peak Hour Congestion
-    Returns a float strictly between 0 and 1.
+    Medium task validator-safe grader
     """
-    epsilon = 1e-6  # validator-safe margin
+    mean_score = sum(raw_scores) / len(raw_scores)
+    final_score = mean_score + consistency_bonus + explanation_bonus - catastrophic_penalty
 
-    try:
-        action = int(str(output).strip())
+    epsilon = 1e-6
+    final_score = max(epsilon, min(1 - epsilon, final_score))
 
-        # observation contains [N, S, E, W] traffic densities
-        if observation and isinstance(observation, list):
-            max_road = observation.index(max(observation))
-            raw_score = 0.99 if action == max_road else 0.01
-        else:
-            raw_score = 0.99 if action in [0, 1, 2, 3] else 0.01
-
-        # Clip strictly inside (0,1)
-        final_score = max(epsilon, min(1 - epsilon, float(raw_score)))
-        return final_score
-
-    except Exception:
-        return float(epsilon)
+    return float(final_score)
