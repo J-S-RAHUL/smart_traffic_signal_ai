@@ -1,7 +1,19 @@
 name: "smart-traffic-signal-ai"
 version: "1.0.0"
 entrypoint: "inference.py"
+
 tasks:
-  - "tasks/task_1/task.yaml"
-  - "tasks/task_2/task.yaml"
-  - "tasks/task_3/task.yaml"
+  - id: "task_1"
+    name: "Standard Junction Flow"
+    difficulty: "Easy"
+    grader_path: "tasks/task_1/grader.py"
+    
+  - id: "task_2"
+    name: "Peak Hour Congestion"
+    difficulty: "Medium"
+    grader_path: "tasks/task_2/grader.py"
+    
+  - id: "task_3"
+    name: "Emergency Vehicle Priority"
+    difficulty: "Hard"
+    grader_path: "tasks/task_3/grader.py"
