@@ -1,5 +1,5 @@
 name: "Peak Hour Congestion"
-description: "Manage high-volume traffic and prevent gridlock."
+description: "Handle medium traffic"
 version: "1.0.0"
-grader_path: "grader.py"
+grader_path: "grader.grade"
 difficulty: "Medium"
