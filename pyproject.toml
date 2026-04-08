@@ -1,15 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "smart-traffic-signal-ai"
 version = "1.0.0"
-description = "AI-based smart traffic signal system"
+description = "AI-powered smart traffic signal environment for OpenEnv"
 requires-python = ">=3.10"
+
 dependencies = [
-    "openai",
     "fastapi",
     "uvicorn",
     "pydantic",
-    "numpy"
+    "openenv-core>=0.2.0"
 ]
 
 [project.scripts]
-server = "inference:run_task"
+server = "server.app:main"
