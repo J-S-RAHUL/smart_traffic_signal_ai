@@ -6,14 +6,14 @@ tasks:
   - id: "task_1"
     name: "Standard Junction Flow"
     difficulty: "Easy"
-    grader_path: "tasks/task_1/grader.py"
+    grader_path: "tasks/task_1/grader.grade"
     
   - id: "task_2"
     name: "Peak Hour Congestion"
     difficulty: "Medium"
-    grader_path: "tasks/task_2/grader.py"
+    grader_path: "tasks/task_2/grader.grade"
     
   - id: "task_3"
     name: "Emergency Vehicle Priority"
     difficulty: "Hard"
-    grader_path: "tasks/task_3/grader.py"
+    grader_path: "tasks/task_3/grader.grade"
