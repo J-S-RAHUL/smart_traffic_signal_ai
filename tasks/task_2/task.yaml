@@ -1,5 +1,5 @@
 name: "Peak Hour Congestion"
-description: "The agent must manage high-volume traffic (30+ vehicles) and prevent gridlock on major roads."
+description: "Manage high-volume traffic and prevent gridlock."
 version: "1.0.0"
 grader_path: "grader.py"
 difficulty: "Medium"
