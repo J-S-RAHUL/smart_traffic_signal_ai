@@ -1,25 +1,18 @@
-# tasks/task_1/grader.py
+# grader.py for Easy Task
 
-def grade(output=None, expected_output=None, observation=None, **kwargs):
+def grade(raw_scores, consistency_bonus=0.05, explanation_bonus=0.05, catastrophic_penalty=0.4):
     """
-    Task 1: Standard Traffic Flow
-    Returns a float strictly between 0 and 1.
+    Easy task validator-safe grader
     """
-    epsilon = 1e-6  # validator-safe margin
+    # Step 1: Compute mean of raw_scores
+    mean_score = sum(raw_scores) / len(raw_scores)
 
-    try:
-        action = int(str(output).strip())
+    # Step 2: Apply bonuses and catastrophic penalty
+    final_score = mean_score + consistency_bonus + explanation_bonus - catastrophic_penalty
 
-        # observation contains [N, S, E, W] traffic densities
-        if observation and isinstance(observation, list):
-            max_road = observation.index(max(observation))
-            raw_score = 0.99 if action == max_road else 0.01
-        else:
-            raw_score = 0.99 if action in [0, 1, 2, 3] else 0.01
+    # Step 3: Clip strictly between 0 and 1
+    epsilon = 1e-6
+    final_score = max(epsilon, min(1 - epsilon, final_score))
 
-        # Clip strictly inside (0,1)
-        final_score = max(epsilon, min(1 - epsilon, float(raw_score)))
-        return final_score
-
-    except Exception:
-        return float(epsilon)
+    # Step 4: Return float
+    return float(final_score)
