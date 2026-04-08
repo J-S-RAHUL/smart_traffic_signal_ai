@@ -1,22 +1,26 @@
 def grade(output, expected_output=None, observation=None, **kwargs):
     """
-    Universal Grader for Smart Traffic Signal AI.
-    Checks if the agent selected the road with the highest traffic.
+    Grader for Emergency Vehicle Priority.
+    Emergency vehicle road must be selected first.
     """
     try:
-        # Convert output to integer (Action 0, 1, 2, or 3)
         action = int(str(output).strip())
-        
-        # If the validator provides the observation [N, S, E, W]
-        if observation and isinstance(observation, list):
-            max_traffic_road = observation.index(max(observation))
-            return 1.0 if action == max_traffic_road else 0.0
-        
-        # Fallback: If observation isn't passed, check if action is valid
-        if action in [0, 1, 2, 3]:
-            return 1.0
-        return 0.0
-        
+
+        if observation and isinstance(observation, dict):
+            traffic = observation.get("traffic", [])
+            emergency = observation.get("emergency", [])
+
+            # Priority to emergency vehicle
+            if 1 in emergency:
+                emergency_road = emergency.index(1)
+                return 1.0 if action == emergency_road else 0.0
+
+            # Otherwise choose max traffic
+            if traffic:
+                max_road = traffic.index(max(traffic))
+                return 1.0 if action == max_road else 0.0
+
+        return 1.0 if action in [0, 1, 2, 3] else 0.0
+
     except Exception:
-        # Return 0 if the output is not a valid number
         return 0.0
