@@ -1,5 +1,5 @@
 name: "Standard Junction Flow"
 description: "Select road with highest traffic"
 version: "1.0.0"
-grader_path: "grader.grade"
+grader_path: "tasks.task_1.grader.grade"
 difficulty: "Easy"
