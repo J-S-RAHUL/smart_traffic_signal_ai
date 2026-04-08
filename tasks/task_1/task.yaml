@@ -1,5 +1,5 @@
 name: "Standard Junction Flow"
-description: "Identify the road with the highest vehicle density in a normal 4-way junction."
+description: "Select road with highest traffic"
 version: "1.0.0"
-grader_path: "grader.py"
+grader_path: "grader.grade"
 difficulty: "Easy"
