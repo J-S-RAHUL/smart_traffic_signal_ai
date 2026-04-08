@@ -1,5 +1,5 @@
 name: "Emergency Vehicle Priority"
-description: "Emergency priority handling"
+description: "Emergency vehicle handling and priority management"
 version: "1.0.0"
-grader_path: "grader.grade"
+grader_path: "tasks.task_3.grader.grade"
 difficulty: "Hard"
