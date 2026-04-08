@@ -2,17 +2,20 @@ name: "smart-traffic-signal-ai"
 version: "1.0.0"
 entrypoint: "inference.py"
 
+score_range: [0, 1]
+score_exclusive: true  # Tells validator: 0 < score < 1 (strict open interval)
+
 tasks:
   - id: "task_1"
     name: "Standard Junction Flow"
     difficulty: "Easy"
     grader_path: "tasks.task_1.grader.grade"
-    
+
   - id: "task_2"
     name: "Peak Hour Congestion"
     difficulty: "Medium"
     grader_path: "tasks.task_2.grader.grade"
-    
+
   - id: "task_3"
     name: "Emergency Vehicle Priority"
     difficulty: "Hard"
