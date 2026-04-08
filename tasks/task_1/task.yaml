@@ -1,5 +1,5 @@
 name: "Standard Junction Flow"
-description: "The agent must identify the road with the highest vehicle density in a normal 4-way junction."
+description: "Identify the road with the highest vehicle density in a normal 4-way junction."
 version: "1.0.0"
 grader_path: "grader.py"
 difficulty: "Easy"
