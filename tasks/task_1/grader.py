@@ -1,18 +1,41 @@
 # grader.py for Easy Task
 
-def grade(raw_scores, consistency_bonus=0.05, explanation_bonus=0.05, catastrophic_penalty=0.4):
+import math
+
+def grade(raw_scores, consistency_bonus=False, explanation_bonus=False, catastrophic=False):
     """
-    Easy task validator-safe grader
+    Easy task validator-safe grader.
+
+    Args:
+        raw_scores (list): Per-step reward scores from the trajectory.
+        consistency_bonus (bool): Set True only if the agent was consistent throughout.
+        explanation_bonus (bool): Set True only if the agent provided good explanations.
+        catastrophic (bool): Set True only if a catastrophic event occurred.
+
+    Returns:
+        float: Final score strictly in (0, 1).
     """
-    # Step 1: Compute mean of raw_scores
+    epsilon = 1e-6
+
+    # Guard: empty trajectory
+    if not raw_scores:
+        return float(epsilon)
+
     mean_score = sum(raw_scores) / len(raw_scores)
 
-    # Step 2: Apply bonuses and catastrophic penalty
-    final_score = mean_score + consistency_bonus + explanation_bonus - catastrophic_penalty
+    # Guard: NaN or Inf bypasses clipping — catch it explicitly
+    if not math.isfinite(mean_score):
+        return float(epsilon)
 
-    # Step 3: Clip strictly between 0 and 1
-    epsilon = 1e-6
+    # Apply modifiers only when actually triggered
+    final_score = mean_score
+    if consistency_bonus:
+        final_score += 0.05
+    if explanation_bonus:
+        final_score += 0.05
+    if catastrophic:
+        final_score -= 0.40
+
+    # Strict open-interval clip: 0 < score < 1
     final_score = max(epsilon, min(1 - epsilon, final_score))
-
-    # Step 4: Return float
     return float(final_score)
