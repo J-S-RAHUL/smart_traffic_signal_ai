@@ -1,5 +1,5 @@
 name: "Emergency Vehicle Priority"
-description: "The agent must prioritize roads with emergency vehicles (Ambulance/Fire) regardless of total traffic volume."
+description: "Prioritize roads with emergency vehicles regardless of traffic density."
 version: "1.0.0"
 grader_path: "grader.py"
 difficulty: "Hard"
