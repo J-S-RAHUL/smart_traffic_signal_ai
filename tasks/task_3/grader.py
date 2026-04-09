@@ -1,13 +1,27 @@
-# grader.py for Hard Task
+import math
 
-def grade(raw_scores, consistency_bonus=0.15, explanation_bonus=0.15, catastrophic_penalty=0.6):
+def grade(raw_scores=None, **kwargs):
     """
-    Hard task validator-safe grader
+    Hard Task grader — Emergency Vehicle Priority.
+    Returns a float STRICTLY between 0 and 1 (never 0.0, never 1.0).
     """
-    mean_score = sum(raw_scores) / len(raw_scores)
-    final_score = mean_score + consistency_bonus + explanation_bonus - catastrophic_penalty
+    EPSILON = 1e-6
+    LOW     = EPSILON
+    HIGH    = 1.0 - EPSILON
 
-    epsilon = 1e-6
-    final_score = max(epsilon, min(1 - epsilon, final_score))
-
-    return float(final_score)
+    try:
+        if not raw_scores:
+            return 0.5
+        scores = [float(s) for s in raw_scores if math.isfinite(float(s))]
+        if not scores:
+            return 0.5
+        mean = sum(scores) / len(scores)
+        if kwargs.get("consistency_bonus") is True:
+            mean += 0.15
+        if kwargs.get("explanation_bonus") is True:
+            mean += 0.15
+        if kwargs.get("catastrophic") is True:
+            mean -= 0.60
+        return float(max(LOW, min(HIGH, mean)))
+    except Exception:
+        return 0.5
