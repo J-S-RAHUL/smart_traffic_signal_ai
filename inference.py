@@ -1,54 +1,21 @@
-import os
-import random
-import sys
-from openai import OpenAI
+import math
 
-from tasks.task_1.grader import grade as grade_task1
-from tasks.task_2.grader import grade as grade_task2
-from tasks.task_3.grader import grade as grade_task3
-
-TASKS = {
-    "task_1": grade_task1,
-    "task_2": grade_task2,
-    "task_3": grade_task3,
-}
-
-def call_llm(prompt):
+def grade(*args, **kwargs):
+    raw_scores = args[0] if args else kwargs.get("raw_scores", None)
+    EPSILON = 1e-6
     try:
-        client = OpenAI(
-            base_url=os.environ["API_BASE_URL"],
-            api_key=os.environ["API_KEY"]
-        )
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": prompt}]
-        )
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        return "North"
-
-def run_task(task_id, grader):
-    print(f"[START] task={task_id}", flush=True)
-
-    raw_scores = []
-    steps = 5
-
-    for i in range(1, steps + 1):
-        reply = call_llm(
-            f"You are a traffic signal AI. Task: {task_id}, Step: {i}. "
-            f"Pick one road: North, South, East, West. Reply with one word only."
-        )
-        reward = random.choice([0.3, 0.5, 0.7, 0.9])
-        raw_scores.append(reward)
-        print(f"[STEP] step={i} reward={reward}", flush=True)
-
-    score = float(grader(raw_scores))
-    print(f"[END] task={task_id} score={score} steps={steps}", flush=True)
-    return score
-
-if __name__ == "__main__":
-    for task_id, grader in TASKS.items():
-        try:
-            run_task(task_id, grader)
-        except Exception as e:
-            print(f"[END] task={task_id} score=0.5 steps=0", flush=True)
+        if not raw_scores:
+            return 0.5
+        scores = [float(s) for s in raw_scores if math.isfinite(float(s))]
+        if not scores:
+            return 0.5
+        mean = sum(scores) / len(scores)
+        if kwargs.get("consistency_bonus") is True:
+            mean += 0.05
+        if kwargs.get("explanation_bonus") is True:
+            mean += 0.05
+        if kwargs.get("catastrophic") is True:
+            mean -= 0.40
+        return float(max(EPSILON, min(1.0 - EPSILON, mean)))
+    except Exception:
+        return 0.5
