@@ -1,14 +1,7 @@
 import math
 
 def grade(raw_scores=None, **kwargs):
-    """
-    Hard Task grader — Emergency Vehicle Priority.
-    Returns a float STRICTLY between 0 and 1 (never 0.0, never 1.0).
-    """
     EPSILON = 1e-6
-    LOW     = EPSILON
-    HIGH    = 1.0 - EPSILON
-
     try:
         if not raw_scores:
             return 0.5
@@ -22,6 +15,6 @@ def grade(raw_scores=None, **kwargs):
             mean += 0.15
         if kwargs.get("catastrophic") is True:
             mean -= 0.60
-        return float(max(LOW, min(HIGH, mean)))
+        return float(max(EPSILON, min(1.0 - EPSILON, mean)))
     except Exception:
         return 0.5
